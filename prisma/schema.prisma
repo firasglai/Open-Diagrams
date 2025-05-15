@@ -1,0 +1,441 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==================
+// ENUM DEFINITIONS
+// ==================
+
+enum RoleType {
+  ADMIN
+  RECRUITER
+  COMPANY
+  CANDIDATE
+}
+
+enum CompanySize {
+  STARTUP
+  SMALL
+  MEDIUM
+  LARGE
+  ENTERPRISE
+}
+
+enum JobContractType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  FREELANCE
+  INTERNSHIP
+  TEMPORARY
+}
+
+enum WorkplaceType {
+  ONSITE
+  HYBRID
+  REMOTE
+  ON_THE_ROAD
+}
+
+enum JobStatus {
+  OPEN
+  CLOSED
+  PAUSED
+  DRAFT
+}
+
+enum PaymentFrequency {
+  HOURLY
+  DAILY
+  WEEKLY
+  BIWEEKLY
+  MONTHLY
+  SEMESTRIAL
+  ANNUAL
+  BY_TASK
+}
+
+enum EmploymentStatus {
+  EMPLOYED
+  NOT_EMPLOYED
+  SELF_EMPLOYED
+  STUDENT
+}
+
+enum ExperienceLevel {
+  ENTRY
+  JUNIOR
+  MID
+  SENIOR
+  LEAD
+  EXPERT
+}
+
+enum InterviewType {
+  PHONE_SCREENING
+  ONLINE_INTERVIEW
+  DESIGN_TEST
+  IN_PERSON
+  AUTOMATED_VIDEO
+  TECHNICAL_ASSESSMENT
+  CULTURAL_FIT
+  ASSIGNMENT
+  PORTFOLIO_PRESENTATION
+}
+
+enum BenefitType {
+  HEALTH_INSURANCE
+  DENTAL_INSURANCE
+  VISION_INSURANCE
+  RETIREMENT_PLAN
+  STOCK_OPTIONS
+  FLEXIBLE_HOURS
+  REMOTE_WORK
+  VACATION_TIME
+  PARENTAL_LEAVE
+  PROFESSIONAL_DEVELOPMENT
+  DISCOUNT_VOUCHERS
+  BUSINESS_TRIPS
+  TRANSPORTATION_EXPENSE
+  LUNCH_ALLOWANCE
+  CERTIFICATIONS
+  WORKSHOPS
+}
+
+enum ApplicationStatus {
+  IN_REVIEW
+  SHORTLISTED
+  INTERVIEW_SCHEDULED
+  TECHNICAL_ASSESSMENT
+  REFERENCE_CHECK
+  OFFER_SENT
+  ACCEPTED
+  REFUSED
+  WITHDRAWN
+}
+
+enum ActivityStatus {
+  APPLIED
+  SAVED
+  INTERVIEWED
+  ARCHIVED
+}
+
+enum NotificationType {
+  JOB_APPLIED
+  APPLICATION_UPDATE
+  INTERVIEW_INVITATION
+  JOB_MATCH
+  PROFILE_VIEW
+  MESSAGE_RECEIVED
+  JOB_CLOSED
+  RESUME_VIEWED
+  NEW_JOB_POSTED
+  SYSTEM
+}
+
+// ==================
+// MODEL DEFINITIONS
+// ==================
+
+model User {
+  id             String       @id @default(uuid())
+  email          String       @unique
+  password       String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  emailVerified  DateTime?
+  authProvider   String?
+  authProviderId String?
+  lastLogin      DateTime?
+  isActive       Boolean      @default(true)
+
+  role           Role         @relation(fields: [roleId], references: [id])
+  roleId         String
+
+  recruiter      Recruiter?
+  candidate      Candidate?
+
+  notifications  Notification[]
+
+    // Audit relations
+  createdJobs         Job[]             @relation("JobCreator")
+  updatedJobs         Job[]             @relation("JobUpdater")
+  createdApplications Application[]     @relation("ApplicationCreator")
+  updatedApplications Application[]     @relation("ApplicationUpdater")
+
+  @@index([email])
+  @@index([roleId])
+}
+
+model Role {
+  id    String   @id @default(uuid())
+  name  RoleType @unique
+
+  users User[]
+}
+
+model Recruiter {
+  id                String            @id @default(uuid())
+  userId            String            @unique
+  firstName         String
+  lastName          String
+  profilePicture    String?
+  bio               String?           @db.Text
+  position          String?
+  yearsOfExperience Int?
+  specializations   String[]
+
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobs              Job[]
+
+  companyRelations  RecruiterCompany[]
+  companies         Company[]         @relation("RecruiterToCompany")
+
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@index([userId])
+}
+
+model Company {
+  id                String             @id @default(uuid())
+  name              String
+  foundedYear       Int
+  logo              String?
+  location          String
+  city              String?
+  country           String?
+  companySize       CompanySize
+  industry          String?
+  website           String?
+  description       String?            @db.Text
+
+  jobs              Job[]
+
+  recruiterRelations RecruiterCompany[]
+  recruiters        Recruiter[]        @relation("RecruiterToCompany")
+
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  @@index([name])
+  @@index([industry])
+  @@index([companySize])
+}
+
+model Job {
+  id                  String           @id @default(uuid())
+  title               String
+  type                JobContractType
+  location            String
+  category            String
+  jobType             WorkplaceType
+  description         String           @db.Text
+  views               Int              @default(0)
+  datePosted          DateTime         @default(now())
+  status              JobStatus        @default(OPEN)
+  slug                String?          @unique
+
+  companyId           String
+  company             Company          @relation(fields: [companyId], references: [id])
+  recruiterId         String
+  recruiter           Recruiter        @relation(fields: [recruiterId], references: [id])
+
+  teamDescription     String?          @db.Text
+  interviewTypes      InterviewType[]
+  baseSalaryMin       Float?
+  baseSalaryMax       Float?
+  benefitsDescription String?          @db.Text
+  benefits            BenefitType[]
+  paymentWay          PaymentFrequency
+  
+  // Integrate JobValue fields directly
+  valueDescription    String?          @db.Text 
+
+  requirements        JobRequirement[]
+  activities          Activity[]
+  applications        Application[]
+  // Audit fields
+  createdById         String?
+  updatedById         String?
+  createdBy           User?            @relation("JobCreator", fields: [createdById], references: [id])
+  updatedBy           User?            @relation("JobUpdater", fields: [updatedById], references: [id])
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  @@index([companyId])
+  @@index([recruiterId])
+  @@index([status])
+  @@index([category])
+  @@index([jobType])
+  @@index([type])
+  @@index([datePosted])
+  @@index([createdById])
+  @@index([updatedById])
+}
+
+model JobRequirement {
+  id              String          @id @default(uuid())
+  jobId           String
+  skillName       String
+  experienceLevel ExperienceLevel?
+  isRequired      Boolean         @default(true)
+
+  job             Job             @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@index([jobId])
+  @@unique([jobId, skillName])
+}
+
+model Candidate {
+  id              String           @id @default(uuid())
+  userId          String           @unique
+  firstName       String
+  lastName        String
+  phoneNumber     String?
+  city            String?
+  postalCode      String?
+  minimumSalary   Float?
+  paymentPeriod   PaymentFrequency?
+  jobTitle        String?
+  location        String?
+  employmentStatus EmploymentStatus
+  profilePicture  String?
+  bio             String?          @db.Text
+  skills          String[]
+
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  resumes         Resume[]
+  activities      Activity[]
+  applications    Application[]
+
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@index([userId])
+  @@index([employmentStatus])
+  @@index([location])
+  @@index([jobTitle])
+}
+
+model Resume {
+  id           String           @id @default(uuid())
+  candidateId  String
+  fileName     String
+  fileType     String
+  fileUrl      String
+  isDefault    Boolean          @default(false)
+
+  candidate    Candidate        @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  applications Application[]
+
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  @@index([candidateId])
+}
+
+model Activity {
+  id            String         @id @default(uuid())
+  candidateId   String
+  jobId         String
+  status        ActivityStatus
+  date          DateTime       @default(now())
+  notes         String?        @db.Text
+
+  candidate     Candidate      @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  job           Job            @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([candidateId])
+  @@index([jobId])
+  @@index([status])
+  @@index([date])
+  @@unique([candidateId, jobId, status])
+}
+
+model Application {
+  id           String            @id @default(uuid())
+  candidateId  String
+  jobId        String
+  resumeId     String
+  status       ApplicationStatus @default(IN_REVIEW)
+  appliedDate  DateTime          @default(now())
+  notes        String?           @db.Text
+  feedback     String?           @db.Text
+
+  candidate    Candidate         @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  job          Job               @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  resume       Resume            @relation(fields: [resumeId], references: [id])
+
+  // Audit fields
+  createdById  String?
+  updatedById  String?
+  createdBy    User?             @relation("ApplicationCreator", fields: [createdById], references: [id])
+  updatedBy    User?             @relation("ApplicationUpdater", fields: [updatedById], references: [id])
+
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  @@index([candidateId])
+  @@index([jobId])
+  @@index([status])
+  @@index([appliedDate])
+  @@index([createdById])
+  @@index([updatedById])
+  @@unique([candidateId, jobId])
+}
+
+model Notification {
+  id                String           @id @default(uuid())
+  userId            String
+  type              NotificationType
+  message           String           @db.Text
+  read              Boolean          @default(false)
+  relatedEntityId   String?
+  relatedEntityType String?
+
+  user              User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  @@index([userId])
+  @@index([read])
+  @@index([type])
+  @@index([createdAt])
+}
+
+// ==================
+// JOIN TABLE
+// ==================
+
+model RecruiterCompany {
+  id          String   @id @default(uuid())
+  recruiterId String
+  companyId   String
+  joinedAt    DateTime @default(now())
+  // Add any additional fields for the relationship here
+  
+  recruiter   Recruiter @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
+  company     Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  
+  @@unique([recruiterId, companyId])
+  @@index([recruiterId])
+  @@index([companyId])
+}
