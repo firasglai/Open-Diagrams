@@ -1,86 +1,173 @@
 {
   "tables": {
-    "user_profiles": {
-      "name": "user_profiles",
-      "comment": null,
+    "users": {
+      "name": "users",
       "columns": {
+        "instance_id": {
+          "name": "instance_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
         "id": {
           "name": "id",
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
-        "user_id": {
-          "name": "user_id",
-          "type": "uuid",
+        "aud": {
+          "name": "aud",
+          "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
-          "notNull": true,
+          "notNull": false,
           "comment": null
         },
         "role": {
           "name": "role",
-          "type": "role_type",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "comment": null
-        },
-        "first_name": {
-          "name": "first_name",
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
-        "last_name": {
-          "name": "last_name",
+        "email": {
+          "name": "email",
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
-        "profile_picture_url": {
-          "name": "profile_picture_url",
-          "type": "text",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
-        "bio": {
-          "name": "bio",
-          "type": "text",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
-        "location": {
-          "name": "location",
+        "encrypted_password": {
+          "name": "encrypted_password",
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "email_confirmed_at": {
+          "name": "email_confirmed_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "invited_at": {
+          "name": "invited_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "confirmation_token": {
+          "name": "confirmation_token",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "confirmation_sent_at": {
+          "name": "confirmation_sent_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "recovery_token": {
+          "name": "recovery_token",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "recovery_sent_at": {
+          "name": "recovery_sent_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "email_change_token_new": {
+          "name": "email_change_token_new",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "email_change": {
+          "name": "email_change",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "email_change_sent_at": {
+          "name": "email_change_sent_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "last_sign_in_at": {
+          "name": "last_sign_in_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "raw_app_meta_data": {
+          "name": "raw_app_meta_data",
+          "type": "jsonb",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "raw_user_meta_data": {
+          "name": "raw_user_meta_data",
+          "type": "jsonb",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "is_super_admin": {
+          "name": "is_super_admin",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
           "notNull": false,
           "comment": null
         },
@@ -89,61 +176,273 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
+        "phone_confirmed_at": {
+          "name": "phone_confirmed_at",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
+        "phone_change": {
+          "name": "phone_change",
+          "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "phone_change_token": {
+          "name": "phone_change_token",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "phone_change_sent_at": {
+          "name": "phone_change_sent_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "confirmed_at": {
+          "name": "confirmed_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "email_change_token_current": {
+          "name": "email_change_token_current",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "email_change_confirm_status": {
+          "name": "email_change_confirm_status",
+          "type": "int2",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "banned_until": {
+          "name": "banned_until",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "reauthentication_token": {
+          "name": "reauthentication_token",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "reauthentication_sent_at": {
+          "name": "reauthentication_sent_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "is_sso_user": {
+          "name": "is_sso_user",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
           "notNull": false,
           "comment": null
         }
       },
+      "comment": null,
       "indexes": {
-        "idx_user_profiles_user_id": {
-          "name": "idx_user_profiles_user_id",
+        "users_instance_id_idx": {
+          "name": "users_instance_id_idx",
           "unique": false,
           "columns": [
-            "user_id"
+            "instance_id"
+          ],
+          "type": "btree"
+        },
+        "users_email_idx": {
+          "name": "users_email_idx",
+          "unique": false,
+          "columns": [
+            "email"
           ],
           "type": "btree"
         }
       },
       "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
+        "users_pkey": {
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "name": "users_pkey",
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    },
+    "user_profiles": {
+      "name": "user_profiles",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "role": {
+          "name": "role",
+          "type": "role_type",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "first_name": {
+          "name": "first_name",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "last_name": {
+          "name": "last_name",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "profile_picture_url": {
+          "name": "profile_picture_url",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "bio": {
+          "name": "bio",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "location": {
+          "name": "location",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "phone": {
+          "name": "phone",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {
+        "idx_user_profiles_email": {
+          "name": "idx_user_profiles_email",
+          "unique": false,
+          "columns": [
+            "email"
+          ],
+          "type": "btree"
+        }
+      },
+      "constraints": {
+        "user_profiles_pkey": {
+          "type": "PRIMARY KEY",
+          "name": "user_profiles_pkey",
+          "columnNames": [
+            "id"
+          ]
         },
         "users_id_to_user_profiles_user_id": {
           "type": "FOREIGN KEY",
           "name": "users_id_to_user_profiles_user_id",
-          "columnName": "user_id",
+          "columnNames": [
+            "user_id"
+          ],
           "targetTableName": "users",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
-        "UNIQUE_user_id": {
-          "name": "UNIQUE_user_id",
+        "user_profiles_user_id_key": {
           "type": "UNIQUE",
-          "columnName": "user_id"
+          "name": "user_profiles_user_id_key",
+          "columnNames": [
+            "user_id"
+          ]
         }
       }
     },
@@ -155,18 +454,14 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
         "name": {
           "name": "name",
-          "type": "varchar",
+          "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -175,8 +470,6 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -185,38 +478,30 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
         "location": {
           "name": "location",
-          "type": "varchar",
+          "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
         "company_size": {
           "name": "company_size",
-          "type": "company_size",
+          "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": true,
+          "notNull": false,
           "comment": null
         },
         "industry": {
           "name": "industry",
-          "type": "varchar",
+          "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -225,49 +510,123 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "mission": {
+          "name": "mission",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "team_description": {
+          "name": "team_description",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "unique_journey": {
+          "name": "unique_journey",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "employee_expectations": {
+          "name": "employee_expectations",
+          "type": "text",
+          "default": null,
+          "check": null,
           "notNull": false,
           "comment": null
         },
         "website": {
           "name": "website",
-          "type": "varchar",
+          "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "company_email": {
+          "name": "company_email",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "office_branches": {
+          "name": "office_branches",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "office_locations": {
+          "name": "office_locations",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "cultural_values": {
+          "name": "cultural_values",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "interview_methods": {
+          "name": "interview_methods",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "culture_ratings": {
+          "name": "culture_ratings",
+          "type": "jsonb",
+          "default": null,
+          "check": null,
           "notNull": false,
           "comment": null
         },
         "created_at": {
           "name": "created_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
+          "notNull": true,
           "comment": null
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
+          "notNull": true,
           "comment": null
         }
       },
       "comment": null,
       "indexes": {},
       "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
+        "companies_pkey": {
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "name": "companies_pkey",
+          "columnNames": [
+            "id"
+          ]
         }
       }
     },
@@ -279,8 +638,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -289,8 +646,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -299,8 +654,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -309,18 +662,14 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": true,
+          "notNull": false,
           "comment": null
         },
         "position": {
           "name": "position",
-          "type": "varchar",
+          "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -329,90 +678,125 @@
           "type": "int4",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "hiring_goals": {
+          "name": "hiring_goals",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "interview_preferences": {
+          "name": "interview_preferences",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "recruiting_focus": {
+          "name": "recruiting_focus",
+          "type": "text",
+          "default": null,
+          "check": null,
           "notNull": false,
           "comment": null
         },
         "created_at": {
           "name": "created_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
+          "notNull": true,
           "comment": null
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
+          "notNull": true,
           "comment": null
         }
       },
       "comment": null,
-      "indexes": {},
+      "indexes": {
+        "idx_recruiters_company_id": {
+          "name": "idx_recruiters_company_id",
+          "unique": false,
+          "columns": [
+            "company_id"
+          ],
+          "type": "btree"
+        }
+      },
       "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
+        "recruiters_pkey": {
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "name": "recruiters_pkey",
+          "columnNames": [
+            "id"
+          ]
         },
         "users_id_to_recruiters_user_id": {
           "type": "FOREIGN KEY",
           "name": "users_id_to_recruiters_user_id",
-          "columnName": "user_id",
+          "columnNames": [
+            "user_id"
+          ],
           "targetTableName": "users",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
-        "UNIQUE_user_id": {
-          "name": "UNIQUE_user_id",
+        "recruiters_user_id_key": {
           "type": "UNIQUE",
-          "columnName": "user_id"
+          "name": "recruiters_user_id_key",
+          "columnNames": [
+            "user_id"
+          ]
         },
         "user_profiles_id_to_recruiters_profile_id": {
           "type": "FOREIGN KEY",
           "name": "user_profiles_id_to_recruiters_profile_id",
-          "columnName": "profile_id",
+          "columnNames": [
+            "profile_id"
+          ],
           "targetTableName": "user_profiles",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
-        },
-        "UNIQUE_profile_id": {
-          "name": "UNIQUE_profile_id",
-          "type": "UNIQUE",
-          "columnName": "profile_id"
         },
         "companies_id_to_recruiters_company_id": {
           "type": "FOREIGN KEY",
           "name": "companies_id_to_recruiters_company_id",
-          "columnName": "company_id",
+          "columnNames": [
+            "company_id"
+          ],
           "targetTableName": "companies",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
-          "deleteConstraint": "NO_ACTION"
+          "deleteConstraint": "CASCADE"
         }
       }
     },
     "entrepreneurs": {
       "name": "entrepreneurs",
-      "comment": null,
       "columns": {
         "id": {
           "name": "id",
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -421,8 +805,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -431,8 +813,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -441,8 +821,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -451,8 +829,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -461,33 +837,84 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "current_position": {
+          "name": "current_position",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "business_description": {
+          "name": "business_description",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "business_size": {
+          "name": "business_size",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "founded_year": {
+          "name": "founded_year",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "company_id": {
+          "name": "company_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
           "notNull": false,
           "comment": null
         },
         "created_at": {
           "name": "created_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
       },
+      "comment": null,
       "indexes": {
+        "idx_entrepreneurs_industry": {
+          "name": "idx_entrepreneurs_industry",
+          "unique": false,
+          "columns": [
+            "industry"
+          ],
+          "type": "btree"
+        },
+        "idx_entrepreneurs_profile_id": {
+          "name": "idx_entrepreneurs_profile_id",
+          "unique": false,
+          "columns": [
+            "profile_id"
+          ],
+          "type": "btree"
+        },
         "idx_entrepreneurs_skills": {
           "name": "idx_entrepreneurs_skills",
           "unique": false,
@@ -495,55 +922,95 @@
             "skills"
           ],
           "type": "gin"
+        },
+        "idx_entrepreneurs_user_id": {
+          "name": "idx_entrepreneurs_user_id",
+          "unique": false,
+          "columns": [
+            "user_id"
+          ],
+          "type": "btree"
+        },
+        "idx_entrepreneurs_company_id": {
+          "name": "idx_entrepreneurs_company_id",
+          "unique": false,
+          "columns": [
+            "company_id"
+          ],
+          "type": "btree"
         }
       },
       "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
+        "entrepreneurs_pkey": {
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "name": "entrepreneurs_pkey",
+          "columnNames": [
+            "id"
+          ]
         },
         "users_id_to_entrepreneurs_user_id": {
           "type": "FOREIGN KEY",
           "name": "users_id_to_entrepreneurs_user_id",
-          "columnName": "user_id",
+          "columnNames": [
+            "user_id"
+          ],
           "targetTableName": "users",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
-        "UNIQUE_user_id": {
-          "name": "UNIQUE_user_id",
+        "entrepreneurs_user_id_key": {
           "type": "UNIQUE",
-          "columnName": "user_id"
+          "name": "entrepreneurs_user_id_key",
+          "columnNames": [
+            "user_id"
+          ]
         },
         "user_profiles_id_to_entrepreneurs_profile_id": {
           "type": "FOREIGN KEY",
           "name": "user_profiles_id_to_entrepreneurs_profile_id",
-          "columnName": "profile_id",
+          "columnNames": [
+            "profile_id"
+          ],
           "targetTableName": "user_profiles",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
-        "UNIQUE_profile_id": {
-          "name": "UNIQUE_profile_id",
+        "entrepreneurs_profile_id_key": {
           "type": "UNIQUE",
-          "columnName": "profile_id"
+          "name": "entrepreneurs_profile_id_key",
+          "columnNames": [
+            "profile_id"
+          ]
+        },
+        "companies_id_to_entrepreneurs_company_id": {
+          "type": "FOREIGN KEY",
+          "name": "companies_id_to_entrepreneurs_company_id",
+          "columnNames": [
+            "company_id"
+          ],
+          "targetTableName": "companies",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "SET_NULL"
         }
       }
     },
     "candidates": {
       "name": "candidates",
-      "comment": null,
       "columns": {
         "id": {
           "name": "id",
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -552,8 +1019,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -562,8 +1027,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -572,8 +1035,6 @@
           "type": "employment_status",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -582,8 +1043,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -592,8 +1051,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -602,8 +1059,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -612,8 +1067,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -622,8 +1075,6 @@
           "type": "numeric",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -632,8 +1083,6 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -642,129 +1091,134 @@
           "type": "text",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "preferred_work_location": {
+          "name": "preferred_work_location",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "willing_to_relocate": {
+          "name": "willing_to_relocate",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "maximum_salary": {
+          "name": "maximum_salary",
+          "type": "numeric",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "salary_negotiable": {
+          "name": "salary_negotiable",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "currency": {
+          "name": "currency",
+          "type": "varchar",
+          "default": "ZAR",
+          "check": null,
           "notNull": false,
           "comment": null
         },
         "created_at": {
           "name": "created_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
       },
-      "indexes": {
-        "idx_candidates_skills": {
-          "name": "idx_candidates_skills",
-          "unique": false,
-          "columns": [
-            "skills"
-          ],
-          "type": "gin"
-        }
-      },
+      "comment": null,
+      "indexes": {},
       "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
+        "candidates_pkey": {
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "name": "candidates_pkey",
+          "columnNames": [
+            "id"
+          ]
         },
         "users_id_to_candidates_user_id": {
           "type": "FOREIGN KEY",
           "name": "users_id_to_candidates_user_id",
-          "columnName": "user_id",
+          "columnNames": [
+            "user_id"
+          ],
           "targetTableName": "users",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
-        "UNIQUE_user_id": {
-          "name": "UNIQUE_user_id",
+        "candidates_user_id_key": {
           "type": "UNIQUE",
-          "columnName": "user_id"
+          "name": "candidates_user_id_key",
+          "columnNames": [
+            "user_id"
+          ]
         },
         "user_profiles_id_to_candidates_profile_id": {
           "type": "FOREIGN KEY",
           "name": "user_profiles_id_to_candidates_profile_id",
-          "columnName": "profile_id",
+          "columnNames": [
+            "profile_id"
+          ],
           "targetTableName": "user_profiles",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
-        "UNIQUE_profile_id": {
-          "name": "UNIQUE_profile_id",
+        "candidates_profile_id_key": {
           "type": "UNIQUE",
-          "columnName": "profile_id"
+          "name": "candidates_profile_id_key",
+          "columnNames": [
+            "profile_id"
+          ]
         }
       }
     },
-    "jobs": {
-      "name": "jobs",
-      "comment": null,
+    "resumes": {
+      "name": "resumes",
       "columns": {
         "id": {
           "name": "id",
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
-        "title": {
-          "name": "title",
-          "type": "varchar",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "comment": null
-        },
-        "description": {
-          "name": "description",
-          "type": "text",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "comment": null
-        },
-        "company_id": {
-          "name": "company_id",
+        "candidate_id": {
+          "name": "candidate_id",
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
-        "recruiter_id": {
-          "name": "recruiter_id",
-          "type": "uuid",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -773,8 +1227,214 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
+          "notNull": false,
+          "comment": null
+        },
+        "owner_type": {
+          "name": "owner_type",
+          "type": "resume_owner_type",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "file_name": {
+          "name": "file_name",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "file_path": {
+          "name": "file_path",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "file_url": {
+          "name": "file_url",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "file_size": {
+          "name": "file_size",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "file_type": {
+          "name": "file_type",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "is_default": {
+          "name": "is_default",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {
+        "idx_resumes_candidate": {
+          "name": "idx_resumes_candidate",
           "unique": false,
+          "columns": [
+            "candidate_id"
+          ],
+          "type": "btree"
+        },
+        "idx_resumes_entrepreneur": {
+          "name": "idx_resumes_entrepreneur",
+          "unique": false,
+          "columns": [
+            "entrepreneur_id"
+          ],
+          "type": "btree"
+        },
+        "idx_resumes_is_default": {
+          "name": "idx_resumes_is_default",
+          "unique": false,
+          "columns": [
+            "is_default"
+          ],
+          "type": "btree"
+        },
+        "idx_resumes_owner_type": {
+          "name": "idx_resumes_owner_type",
+          "unique": false,
+          "columns": [
+            "owner_type"
+          ],
+          "type": "btree"
+        }
+      },
+      "constraints": {
+        "resumes_pkey": {
+          "type": "PRIMARY KEY",
+          "name": "resumes_pkey",
+          "columnNames": [
+            "id"
+          ]
+        },
+        "candidates_id_to_resumes_candidate_id": {
+          "type": "FOREIGN KEY",
+          "name": "candidates_id_to_resumes_candidate_id",
+          "columnNames": [
+            "candidate_id"
+          ],
+          "targetTableName": "candidates",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        },
+        "entrepreneurs_id_to_resumes_entrepreneur_id": {
+          "type": "FOREIGN KEY",
+          "name": "entrepreneurs_id_to_resumes_entrepreneur_id",
+          "columnNames": [
+            "entrepreneur_id"
+          ],
+          "targetTableName": "entrepreneurs",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        },
+        "resume_owner_check": {
+          "type": "CHECK",
+          "name": "resume_owner_check",
+          "detail": "\r\n        (candidate_id IS NOT NULL AND entrepreneur_id IS NULL AND owner_type = 'CANDIDATE') OR\r\n        (entrepreneur_id IS NOT NULL AND candidate_id IS NULL AND owner_type = 'ENTREPRENEUR')\r\n    "
+        }
+      }
+    },
+    "jobs": {
+      "name": "jobs",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "company_id": {
+          "name": "company_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "recruiter_id": {
+          "name": "recruiter_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "entrepreneur_id": {
+          "name": "entrepreneur_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
           "notNull": false,
           "comment": null
         },
@@ -783,8 +1443,6 @@
           "type": "job_contract_type",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -793,8 +1451,6 @@
           "type": "workplace_type",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -803,8 +1459,14 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "category": {
+          "name": "category",
+          "type": "varchar",
+          "default": null,
+          "check": null,
           "notNull": false,
           "comment": null
         },
@@ -813,8 +1475,6 @@
           "type": "numeric",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -823,8 +1483,6 @@
           "type": "numeric",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -833,8 +1491,6 @@
           "type": "job_status",
           "default": "OPEN",
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -843,32 +1499,139 @@
           "type": "date",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "is_easy_apply": {
+          "name": "is_easy_apply",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "views": {
+          "name": "views",
+          "type": "int4",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "requires_portfolio": {
+          "name": "requires_portfolio",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "requires_cover_letter": {
+          "name": "requires_cover_letter",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "requires_video_presentation": {
+          "name": "requires_video_presentation",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "unique_journey": {
+          "name": "unique_journey",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "bring_to_company": {
+          "name": "bring_to_company",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "team_description": {
+          "name": "team_description",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "employee_expectations": {
+          "name": "employee_expectations",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "recruitment_methods": {
+          "name": "recruitment_methods",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "benefits": {
+          "name": "benefits",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "offers": {
+          "name": "offers",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "payment_frequency": {
+          "name": "payment_frequency",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "education_level": {
+          "name": "education_level",
+          "type": "education_level",
+          "default": null,
+          "check": null,
           "notNull": false,
           "comment": null
         },
         "created_at": {
           "name": "created_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
       },
+      "comment": null,
       "indexes": {
         "idx_jobs_status": {
           "name": "idx_jobs_status",
@@ -886,6 +1649,14 @@
           ],
           "type": "btree"
         },
+        "idx_jobs_recruiter": {
+          "name": "idx_jobs_recruiter",
+          "unique": false,
+          "columns": [
+            "recruiter_id"
+          ],
+          "type": "btree"
+        },
         "idx_jobs_entrepreneur": {
           "name": "idx_jobs_entrepreneur",
           "unique": false,
@@ -893,40 +1664,131 @@
             "entrepreneur_id"
           ],
           "type": "btree"
+        },
+        "idx_jobs_category": {
+          "name": "idx_jobs_category",
+          "unique": false,
+          "columns": [
+            "category"
+          ],
+          "type": "btree"
+        },
+        "idx_jobs_easy_apply": {
+          "name": "idx_jobs_easy_apply",
+          "unique": false,
+          "columns": [
+            "is_easy_apply"
+          ],
+          "type": "btree"
+        },
+        "idx_jobs_views": {
+          "name": "idx_jobs_views",
+          "unique": false,
+          "columns": [
+            "views"
+          ],
+          "type": "btree"
+        },
+        "idx_jobs_created_at": {
+          "name": "idx_jobs_created_at",
+          "unique": false,
+          "columns": [
+            "created_at"
+          ],
+          "type": "btree"
+        },
+        "idx_jobs_location": {
+          "name": "idx_jobs_location",
+          "unique": false,
+          "columns": [
+            "location"
+          ],
+          "type": "btree"
+        },
+        "idx_jobs_education_level": {
+          "name": "idx_jobs_education_level",
+          "unique": false,
+          "columns": [
+            "education_level"
+          ],
+          "type": "btree"
+        },
+        "idx_jobs_requires_portfolio": {
+          "name": "idx_jobs_requires_portfolio",
+          "unique": false,
+          "columns": [
+            "requires_portfolio"
+          ],
+          "type": "btree"
+        },
+        "idx_jobs_requires_cover_letter": {
+          "name": "idx_jobs_requires_cover_letter",
+          "unique": false,
+          "columns": [
+            "requires_cover_letter"
+          ],
+          "type": "btree"
+        },
+        "idx_jobs_requires_video_presentation": {
+          "name": "idx_jobs_requires_video_presentation",
+          "unique": false,
+          "columns": [
+            "requires_video_presentation"
+          ],
+          "type": "btree"
         }
       },
       "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
+        "jobs_pkey": {
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "name": "jobs_pkey",
+          "columnNames": [
+            "id"
+          ]
         },
         "companies_id_to_jobs_company_id": {
           "type": "FOREIGN KEY",
           "name": "companies_id_to_jobs_company_id",
-          "columnName": "company_id",
+          "columnNames": [
+            "company_id"
+          ],
           "targetTableName": "companies",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
         },
         "recruiters_id_to_jobs_recruiter_id": {
           "type": "FOREIGN KEY",
           "name": "recruiters_id_to_jobs_recruiter_id",
-          "columnName": "recruiter_id",
+          "columnNames": [
+            "recruiter_id"
+          ],
           "targetTableName": "recruiters",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
         },
         "entrepreneurs_id_to_jobs_entrepreneur_id": {
           "type": "FOREIGN KEY",
           "name": "entrepreneurs_id_to_jobs_entrepreneur_id",
-          "columnName": "entrepreneur_id",
+          "columnNames": [
+            "entrepreneur_id"
+          ],
           "targetTableName": "entrepreneurs",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
+        },
+        "job_poster_check": {
+          "type": "CHECK",
+          "name": "job_poster_check",
+          "detail": "\r\n        (company_id IS NOT NULL AND recruiter_id IS NOT NULL AND entrepreneur_id IS NULL) OR\r\n        (company_id IS NOT NULL AND recruiter_id IS NULL AND entrepreneur_id IS NULL) OR\r\n        (company_id IS NULL AND recruiter_id IS NULL AND entrepreneur_id IS NOT NULL)\r\n    "
         }
       }
     },
@@ -938,8 +1800,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -948,8 +1808,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -958,8 +1816,6 @@
           "type": "varchar",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -968,8 +1824,6 @@
           "type": "experience_level",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -978,181 +1832,76 @@
           "type": "bool",
           "default": true,
           "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        }
-      },
-      "comment": null,
-      "indexes": {},
-      "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
-          "type": "PRIMARY KEY",
-          "columnName": "id"
-        },
-        "jobs_id_to_job_requirements_job_id": {
-          "type": "FOREIGN KEY",
-          "name": "jobs_id_to_job_requirements_job_id",
-          "columnName": "job_id",
-          "targetTableName": "jobs",
-          "targetColumnName": "id",
-          "updateConstraint": "NO_ACTION",
-          "deleteConstraint": "CASCADE"
-        }
-      }
-    },
-    "resumes": {
-      "name": "resumes",
-      "comment": null,
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "default": null,
-          "check": null,
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "comment": null
-        },
-        "candidate_id": {
-          "name": "candidate_id",
-          "type": "uuid",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
-        "entrepreneur_id": {
-          "name": "entrepreneur_id",
-          "type": "uuid",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
-        "owner_type": {
-          "name": "owner_type",
-          "type": "resume_owner_type",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "comment": null
-        },
-        "file_name": {
-          "name": "file_name",
-          "type": "varchar",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "comment": null
-        },
-        "file_url": {
-          "name": "file_url",
-          "type": "text",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "comment": null
-        },
-        "is_default": {
-          "name": "is_default",
-          "type": "bool",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
         "created_at": {
           "name": "created_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "timestamp",
+          "type": "timestamptz",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
       },
+      "comment": null,
       "indexes": {
-        "idx_resumes_candidate": {
-          "name": "idx_resumes_candidate",
+        "idx_job_requirements_job_id": {
+          "name": "idx_job_requirements_job_id",
           "unique": false,
           "columns": [
-            "candidate_id"
-          ],
-          "type": "btree"
-        },
-        "idx_resumes_entrepreneur": {
-          "name": "idx_resumes_entrepreneur",
-          "unique": false,
-          "columns": [
-            "entrepreneur_id"
+            "job_id"
           ],
           "type": "btree"
         }
       },
       "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
+        "job_requirements_pkey": {
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "name": "job_requirements_pkey",
+          "columnNames": [
+            "id"
+          ]
         },
-        "candidates_id_to_resumes_candidate_id": {
+        "jobs_id_to_job_requirements_job_id": {
           "type": "FOREIGN KEY",
-          "name": "candidates_id_to_resumes_candidate_id",
-          "columnName": "candidate_id",
-          "targetTableName": "candidates",
-          "targetColumnName": "id",
+          "name": "jobs_id_to_job_requirements_job_id",
+          "columnNames": [
+            "job_id"
+          ],
+          "targetTableName": "jobs",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
-        "entrepreneurs_id_to_resumes_entrepreneur_id": {
-          "type": "FOREIGN KEY",
-          "name": "entrepreneurs_id_to_resumes_entrepreneur_id",
-          "columnName": "entrepreneur_id",
-          "targetTableName": "entrepreneurs",
-          "targetColumnName": "id",
-          "updateConstraint": "NO_ACTION",
-          "deleteConstraint": "CASCADE"
+        "job_requirements_job_id_skill_key": {
+          "type": "UNIQUE",
+          "name": "job_requirements_job_id_skill_key",
+          "columnNames": [
+            "job_id",
+            "skill"
+          ]
         }
       }
     },
-    "applications": {
-      "name": "applications",
-      "comment": null,
+    "job_views": {
+      "name": "job_views",
       "columns": {
         "id": {
           "name": "id",
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1161,8 +1910,121 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
+          "notNull": false,
+          "comment": null
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "ip_address": {
+          "name": "ip_address",
+          "type": "inet",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "user_agent": {
+          "name": "user_agent",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "viewed_at": {
+          "name": "viewed_at",
+          "type": "timestamptz",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {
+        "idx_job_views_job_id": {
+          "name": "idx_job_views_job_id",
           "unique": false,
+          "columns": [
+            "job_id"
+          ],
+          "type": "btree"
+        },
+        "idx_job_views_user_id": {
+          "name": "idx_job_views_user_id",
+          "unique": false,
+          "columns": [
+            "user_id"
+          ],
+          "type": "btree"
+        }
+      },
+      "constraints": {
+        "job_views_pkey": {
+          "type": "PRIMARY KEY",
+          "name": "job_views_pkey",
+          "columnNames": [
+            "id"
+          ]
+        },
+        "jobs_id_to_job_views_job_id": {
+          "type": "FOREIGN KEY",
+          "name": "jobs_id_to_job_views_job_id",
+          "columnNames": [
+            "job_id"
+          ],
+          "targetTableName": "jobs",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        },
+        "users_id_to_job_views_user_id": {
+          "type": "FOREIGN KEY",
+          "name": "users_id_to_job_views_user_id",
+          "columnNames": [
+            "user_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "SET_NULL"
+        },
+        "job_views_job_id_user_id_key": {
+          "type": "UNIQUE",
+          "name": "job_views_job_id_user_id_key",
+          "columnNames": [
+            "job_id",
+            "user_id"
+          ]
+        }
+      }
+    },
+    "applications": {
+      "name": "applications",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "job_id": {
+          "name": "job_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
           "notNull": false,
           "comment": null
         },
@@ -1171,8 +2033,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1181,8 +2041,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1191,8 +2049,6 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1201,8 +2057,6 @@
           "type": "applicant_type",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
@@ -1211,8 +2065,46 @@
           "type": "application_status",
           "default": "IN_REVIEW",
           "check": null,
-          "primary": false,
-          "unique": false,
+          "notNull": false,
+          "comment": null
+        },
+        "cover_letter": {
+          "name": "cover_letter",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "portfolio_url": {
+          "name": "portfolio_url",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "cover_letter_path": {
+          "name": "cover_letter_path",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "video_presentation_path": {
+          "name": "video_presentation_path",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "additional_files": {
+          "name": "additional_files",
+          "type": "text",
+          "default": null,
+          "check": null,
           "notNull": false,
           "comment": null
         },
@@ -1221,8 +2113,6 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1231,13 +2121,36 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
       },
+      "comment": null,
       "indexes": {
+        "idx_applications_job_id": {
+          "name": "idx_applications_job_id",
+          "unique": false,
+          "columns": [
+            "job_id"
+          ],
+          "type": "btree"
+        },
+        "idx_applications_candidate_id": {
+          "name": "idx_applications_candidate_id",
+          "unique": false,
+          "columns": [
+            "candidate_id"
+          ],
+          "type": "btree"
+        },
+        "idx_applications_entrepreneur_id": {
+          "name": "idx_applications_entrepreneur_id",
+          "unique": false,
+          "columns": [
+            "entrepreneur_id"
+          ],
+          "type": "btree"
+        },
         "idx_applications_status": {
           "name": "idx_applications_status",
           "unique": false,
@@ -1246,78 +2159,138 @@
           ],
           "type": "btree"
         },
-        "idx_applications_candidate": {
-          "name": "idx_applications_candidate",
+        "idx_applications_applied_at": {
+          "name": "idx_applications_applied_at",
           "unique": false,
           "columns": [
-            "candidate_id"
+            "applied_at"
           ],
           "type": "btree"
         },
-        "idx_applications_entrepreneur": {
-          "name": "idx_applications_entrepreneur",
+        "idx_applications_applicant_type": {
+          "name": "idx_applications_applicant_type",
           "unique": false,
           "columns": [
-            "entrepreneur_id"
+            "applicant_type"
+          ],
+          "type": "btree"
+        },
+        "idx_applications_portfolio_url": {
+          "name": "idx_applications_portfolio_url",
+          "unique": false,
+          "columns": [
+            "portfolio_url"
+          ],
+          "type": "btree"
+        },
+        "idx_applications_cover_letter_path": {
+          "name": "idx_applications_cover_letter_path",
+          "unique": false,
+          "columns": [
+            "cover_letter_path"
+          ],
+          "type": "btree"
+        },
+        "idx_applications_video_presentation_path": {
+          "name": "idx_applications_video_presentation_path",
+          "unique": false,
+          "columns": [
+            "video_presentation_path"
           ],
           "type": "btree"
         }
       },
       "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
+        "applications_pkey": {
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "name": "applications_pkey",
+          "columnNames": [
+            "id"
+          ]
         },
         "jobs_id_to_applications_job_id": {
           "type": "FOREIGN KEY",
           "name": "jobs_id_to_applications_job_id",
-          "columnName": "job_id",
+          "columnNames": [
+            "job_id"
+          ],
           "targetTableName": "jobs",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
         "candidates_id_to_applications_candidate_id": {
           "type": "FOREIGN KEY",
           "name": "candidates_id_to_applications_candidate_id",
-          "columnName": "candidate_id",
+          "columnNames": [
+            "candidate_id"
+          ],
           "targetTableName": "candidates",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
         "entrepreneurs_id_to_applications_entrepreneur_id": {
           "type": "FOREIGN KEY",
           "name": "entrepreneurs_id_to_applications_entrepreneur_id",
-          "columnName": "entrepreneur_id",
+          "columnNames": [
+            "entrepreneur_id"
+          ],
           "targetTableName": "entrepreneurs",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
         },
         "resumes_id_to_applications_resume_id": {
           "type": "FOREIGN KEY",
           "name": "resumes_id_to_applications_resume_id",
-          "columnName": "resume_id",
+          "columnNames": [
+            "resume_id"
+          ],
           "targetTableName": "resumes",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "NO_ACTION"
+        },
+        "applicant_check": {
+          "type": "CHECK",
+          "name": "applicant_check",
+          "detail": "\r\n        (candidate_id IS NOT NULL AND entrepreneur_id IS NULL AND applicant_type = 'CANDIDATE') OR\r\n        (entrepreneur_id IS NOT NULL AND candidate_id IS NULL AND applicant_type = 'ENTREPRENEUR')\r\n    "
+        },
+        "unique_candidate_application": {
+          "type": "UNIQUE",
+          "name": "unique_candidate_application",
+          "columnNames": [
+            "job_id",
+            "candidate_id"
+          ]
+        },
+        "unique_entrepreneur_application": {
+          "type": "UNIQUE",
+          "name": "unique_entrepreneur_application",
+          "columnNames": [
+            "job_id",
+            "entrepreneur_id"
+          ]
         }
       }
     },
     "user_activities": {
       "name": "user_activities",
-      "comment": null,
       "columns": {
         "id": {
           "name": "id",
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": true,
-          "unique": true,
           "notNull": true,
           "comment": null
         },
@@ -1326,9 +2299,7 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
+          "notNull": true,
           "comment": null
         },
         "job_id": {
@@ -1336,149 +2307,22 @@
           "type": "uuid",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
-        "status": {
-          "name": "status",
-          "type": "activity_status",
+        "activity_type": {
+          "name": "activity_type",
+          "type": "activity_type",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": true,
           "comment": null
         },
-        "date": {
-          "name": "date",
-          "type": "timestamp",
-          "default": null,
+        "metadata": {
+          "name": "metadata",
+          "type": "jsonb",
+          "default": "{}",
           "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
-        "notes": {
-          "name": "notes",
-          "type": "text",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        }
-      },
-      "indexes": {
-        "idx_user_activities_user": {
-          "name": "idx_user_activities_user",
-          "unique": false,
-          "columns": [
-            "user_id"
-          ],
-          "type": "btree"
-        }
-      },
-      "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
-          "type": "PRIMARY KEY",
-          "columnName": "id"
-        },
-        "users_id_to_user_activities_user_id": {
-          "type": "FOREIGN KEY",
-          "name": "users_id_to_user_activities_user_id",
-          "columnName": "user_id",
-          "targetTableName": "users",
-          "targetColumnName": "id",
-          "updateConstraint": "NO_ACTION",
-          "deleteConstraint": "CASCADE"
-        },
-        "jobs_id_to_user_activities_job_id": {
-          "type": "FOREIGN KEY",
-          "name": "jobs_id_to_user_activities_job_id",
-          "columnName": "job_id",
-          "targetTableName": "jobs",
-          "targetColumnName": "id",
-          "updateConstraint": "NO_ACTION",
-          "deleteConstraint": "CASCADE"
-        }
-      }
-    },
-    "notifications": {
-      "name": "notifications",
-      "comment": null,
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "uuid",
-          "default": null,
-          "check": null,
-          "primary": true,
-          "unique": true,
-          "notNull": true,
-          "comment": null
-        },
-        "user_id": {
-          "name": "user_id",
-          "type": "uuid",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
-        "type": {
-          "name": "type",
-          "type": "notification_type",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "comment": null
-        },
-        "message": {
-          "name": "message",
-          "type": "text",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": true,
-          "comment": null
-        },
-        "is_read": {
-          "name": "is_read",
-          "type": "bool",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
-        "related_entity_id": {
-          "name": "related_entity_id",
-          "type": "uuid",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
-          "notNull": false,
-          "comment": null
-        },
-        "related_entity_type": {
-          "name": "related_entity_type",
-          "type": "varchar",
-          "default": null,
-          "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         },
@@ -1487,259 +2331,442 @@
           "type": "timestamp",
           "default": null,
           "check": null,
-          "primary": false,
-          "unique": false,
           "notNull": false,
           "comment": null
         }
       },
+      "comment": null,
       "indexes": {
-        "idx_notifications_user": {
-          "name": "idx_notifications_user",
+        "idx_user_activities_user_id": {
+          "name": "idx_user_activities_user_id",
           "unique": false,
           "columns": [
             "user_id"
           ],
           "type": "btree"
         },
-        "idx_notifications_read": {
-          "name": "idx_notifications_read",
+        "idx_user_activities_job_id": {
+          "name": "idx_user_activities_job_id",
           "unique": false,
           "columns": [
+            "job_id"
+          ],
+          "type": "btree"
+        },
+        "idx_user_activities_activity_type": {
+          "name": "idx_user_activities_activity_type",
+          "unique": false,
+          "columns": [
+            "activity_type"
+          ],
+          "type": "btree"
+        },
+        "idx_user_activities_created_at": {
+          "name": "idx_user_activities_created_at",
+          "unique": false,
+          "columns": [
+            "created_at"
+          ],
+          "type": "btree"
+        },
+        "idx_user_activities_user_job": {
+          "name": "idx_user_activities_user_job",
+          "unique": false,
+          "columns": [
+            "user_id",
+            "job_id"
+          ],
+          "type": "btree"
+        }
+      },
+      "constraints": {
+        "user_activities_pkey": {
+          "type": "PRIMARY KEY",
+          "name": "user_activities_pkey",
+          "columnNames": [
+            "id"
+          ]
+        },
+        "users_id_to_user_activities_user_id": {
+          "type": "FOREIGN KEY",
+          "name": "users_id_to_user_activities_user_id",
+          "columnNames": [
+            "user_id"
+          ],
+          "targetTableName": "users",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        },
+        "jobs_id_to_user_activities_job_id": {
+          "type": "FOREIGN KEY",
+          "name": "jobs_id_to_user_activities_job_id",
+          "columnNames": [
+            "job_id"
+          ],
+          "targetTableName": "jobs",
+          "targetColumnNames": [
+            "id"
+          ],
+          "updateConstraint": "NO_ACTION",
+          "deleteConstraint": "CASCADE"
+        },
+        "unique_user_job_activity": {
+          "type": "UNIQUE",
+          "name": "unique_user_job_activity",
+          "columnNames": [
+            "user_id",
+            "job_id",
+            "activity_type"
+          ]
+        }
+      }
+    },
+    "notifications": {
+      "name": "notifications",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "type": {
+          "name": "type",
+          "type": "notification_type",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "message": {
+          "name": "message",
+          "type": "text",
+          "default": null,
+          "check": null,
+          "notNull": true,
+          "comment": null
+        },
+        "is_read": {
+          "name": "is_read",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "is_archived": {
+          "name": "is_archived",
+          "type": "bool",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "related_entity_id": {
+          "name": "related_entity_id",
+          "type": "uuid",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "related_entity_type": {
+          "name": "related_entity_type",
+          "type": "varchar",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "metadata": {
+          "name": "metadata",
+          "type": "jsonb",
+          "default": "{}",
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        },
+        "read_at": {
+          "name": "read_at",
+          "type": "timestamp",
+          "default": null,
+          "check": null,
+          "notNull": false,
+          "comment": null
+        }
+      },
+      "comment": null,
+      "indexes": {
+        "idx_notifications_user_id": {
+          "name": "idx_notifications_user_id",
+          "unique": false,
+          "columns": [
+            "user_id"
+          ],
+          "type": "btree"
+        },
+        "idx_notifications_type": {
+          "name": "idx_notifications_type",
+          "unique": false,
+          "columns": [
+            "type"
+          ],
+          "type": "btree"
+        },
+        "idx_notifications_is_read": {
+          "name": "idx_notifications_is_read",
+          "unique": false,
+          "columns": [
+            "is_read"
+          ],
+          "type": "btree"
+        },
+        "idx_notifications_created_at": {
+          "name": "idx_notifications_created_at",
+          "unique": false,
+          "columns": [
+            "created_at"
+          ],
+          "type": "btree"
+        },
+        "idx_notifications_related_entity": {
+          "name": "idx_notifications_related_entity",
+          "unique": false,
+          "columns": [
+            "related_entity_type",
+            "related_entity_id"
+          ],
+          "type": "btree"
+        },
+        "idx_notifications_user_unread": {
+          "name": "idx_notifications_user_unread",
+          "unique": false,
+          "columns": [
+            "user_id",
             "is_read"
           ],
           "type": "btree"
         }
       },
       "constraints": {
-        "PRIMARY_id": {
-          "name": "PRIMARY_id",
+        "notifications_pkey": {
           "type": "PRIMARY KEY",
-          "columnName": "id"
+          "name": "notifications_pkey",
+          "columnNames": [
+            "id"
+          ]
         },
         "users_id_to_notifications_user_id": {
           "type": "FOREIGN KEY",
           "name": "users_id_to_notifications_user_id",
-          "columnName": "user_id",
+          "columnNames": [
+            "user_id"
+          ],
           "targetTableName": "users",
-          "targetColumnName": "id",
+          "targetColumnNames": [
+            "id"
+          ],
           "updateConstraint": "NO_ACTION",
           "deleteConstraint": "CASCADE"
+        },
+        "idx_notifications_user_read": {
+          "type": "UNIQUE",
+          "name": "idx_notifications_user_read",
+          "columnNames": [
+            "user_id",
+            "id"
+          ]
         }
       }
     }
   },
-  "relationships": {
-    "users_id_to_user_profiles_user_id": {
-      "name": "users_id_to_user_profiles_user_id",
-      "primaryTableName": "users",
-      "primaryColumnName": "id",
-      "foreignTableName": "user_profiles",
-      "foreignColumnName": "user_id",
-      "cardinality": "ONE_TO_ONE",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
+  "enums": {
+    "role_type": {
+      "name": "role_type",
+      "values": [
+        "ADMIN",
+        "RECRUITER",
+        "ENTREPRENEUR",
+        "CANDIDATE"
+      ],
+      "comment": null
     },
-    "users_id_to_recruiters_user_id": {
-      "name": "users_id_to_recruiters_user_id",
-      "primaryTableName": "users",
-      "primaryColumnName": "id",
-      "foreignTableName": "recruiters",
-      "foreignColumnName": "user_id",
-      "cardinality": "ONE_TO_ONE",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
+    "employment_status": {
+      "name": "employment_status",
+      "values": [
+        "EMPLOYED",
+        "UNEMPLOYED",
+        "FREELANCE",
+        "STUDENT",
+        "INTERNSHIP"
+      ],
+      "comment": null
     },
-    "user_profiles_id_to_recruiters_profile_id": {
-      "name": "user_profiles_id_to_recruiters_profile_id",
-      "primaryTableName": "user_profiles",
-      "primaryColumnName": "id",
-      "foreignTableName": "recruiters",
-      "foreignColumnName": "profile_id",
-      "cardinality": "ONE_TO_ONE",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
+    "resume_owner_type": {
+      "name": "resume_owner_type",
+      "values": [
+        "CANDIDATE",
+        "ENTREPRENEUR"
+      ],
+      "comment": null
     },
-    "companies_id_to_recruiters_company_id": {
-      "name": "companies_id_to_recruiters_company_id",
-      "primaryTableName": "companies",
-      "primaryColumnName": "id",
-      "foreignTableName": "recruiters",
-      "foreignColumnName": "company_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
+    "job_contract_type": {
+      "name": "job_contract_type",
+      "values": [
+        "FULL_TIME",
+        "PART_TIME",
+        "CONTRACT",
+        "FREELANCE",
+        "INTERNSHIP",
+        "TEMPORARY"
+      ],
+      "comment": null
     },
-    "users_id_to_entrepreneurs_user_id": {
-      "name": "users_id_to_entrepreneurs_user_id",
-      "primaryTableName": "users",
-      "primaryColumnName": "id",
-      "foreignTableName": "entrepreneurs",
-      "foreignColumnName": "user_id",
-      "cardinality": "ONE_TO_ONE",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
+    "workplace_type": {
+      "name": "workplace_type",
+      "values": [
+        "ONSITE",
+        "HYBRID",
+        "REMOTE",
+        "ON_THE_ROAD"
+      ],
+      "comment": null
     },
-    "user_profiles_id_to_entrepreneurs_profile_id": {
-      "name": "user_profiles_id_to_entrepreneurs_profile_id",
-      "primaryTableName": "user_profiles",
-      "primaryColumnName": "id",
-      "foreignTableName": "entrepreneurs",
-      "foreignColumnName": "profile_id",
-      "cardinality": "ONE_TO_ONE",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
+    "job_status": {
+      "name": "job_status",
+      "values": [
+        "OPEN",
+        "CLOSED",
+        "PAUSED",
+        "DRAFT"
+      ],
+      "comment": null
     },
-    "users_id_to_candidates_user_id": {
-      "name": "users_id_to_candidates_user_id",
-      "primaryTableName": "users",
-      "primaryColumnName": "id",
-      "foreignTableName": "candidates",
-      "foreignColumnName": "user_id",
-      "cardinality": "ONE_TO_ONE",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
+    "experience_level": {
+      "name": "experience_level",
+      "values": [
+        "ENTRY",
+        "JUNIOR",
+        "MID",
+        "SENIOR",
+        "LEAD",
+        "EXPERT"
+      ],
+      "comment": null
     },
-    "user_profiles_id_to_candidates_profile_id": {
-      "name": "user_profiles_id_to_candidates_profile_id",
-      "primaryTableName": "user_profiles",
-      "primaryColumnName": "id",
-      "foreignTableName": "candidates",
-      "foreignColumnName": "profile_id",
-      "cardinality": "ONE_TO_ONE",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
+    "education_level": {
+      "name": "education_level",
+      "values": [
+        "HIGH_SCHOOL_DIPLOMA",
+        "BACHELOR",
+        "LICENSE",
+        "MASTERS",
+        "MBA",
+        "PHD",
+        "OTHER"
+      ],
+      "comment": null
     },
-    "companies_id_to_jobs_company_id": {
-      "name": "companies_id_to_jobs_company_id",
-      "primaryTableName": "companies",
-      "primaryColumnName": "id",
-      "foreignTableName": "jobs",
-      "foreignColumnName": "company_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
+    "application_status": {
+      "name": "application_status",
+      "values": [
+        "IN_REVIEW",
+        "SHORTLISTED",
+        "INTERVIEW_SCHEDULED",
+        "TECHNICAL_ASSESSMENT",
+        "REFERENCE_CHECK",
+        "OFFER_SENT",
+        "ACCEPTED",
+        "REFUSED",
+        "WITHDRAWN"
+      ],
+      "comment": null
     },
-    "recruiters_id_to_jobs_recruiter_id": {
-      "name": "recruiters_id_to_jobs_recruiter_id",
-      "primaryTableName": "recruiters",
-      "primaryColumnName": "id",
-      "foreignTableName": "jobs",
-      "foreignColumnName": "recruiter_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
+    "applicant_type": {
+      "name": "applicant_type",
+      "values": [
+        "CANDIDATE",
+        "ENTREPRENEUR"
+      ],
+      "comment": null
     },
-    "entrepreneurs_id_to_jobs_entrepreneur_id": {
-      "name": "entrepreneurs_id_to_jobs_entrepreneur_id",
-      "primaryTableName": "entrepreneurs",
-      "primaryColumnName": "id",
-      "foreignTableName": "jobs",
-      "foreignColumnName": "entrepreneur_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
+    "activity_type": {
+      "name": "activity_type",
+      "values": [
+        "SAVED_JOB",
+        "VIEWED_JOB",
+        "APPLIED_TO_JOB",
+        "WITHDREW_APPLICATION",
+        "UPDATED_PROFILE",
+        "UPLOADED_RESUME",
+        "FOLLOWED_COMPANY",
+        "SHARED_JOB"
+      ],
+      "comment": null
     },
-    "jobs_id_to_job_requirements_job_id": {
-      "name": "jobs_id_to_job_requirements_job_id",
-      "primaryTableName": "jobs",
-      "primaryColumnName": "id",
-      "foreignTableName": "job_requirements",
-      "foreignColumnName": "job_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    },
-    "candidates_id_to_resumes_candidate_id": {
-      "name": "candidates_id_to_resumes_candidate_id",
-      "primaryTableName": "candidates",
-      "primaryColumnName": "id",
-      "foreignTableName": "resumes",
-      "foreignColumnName": "candidate_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    },
-    "entrepreneurs_id_to_resumes_entrepreneur_id": {
-      "name": "entrepreneurs_id_to_resumes_entrepreneur_id",
-      "primaryTableName": "entrepreneurs",
-      "primaryColumnName": "id",
-      "foreignTableName": "resumes",
-      "foreignColumnName": "entrepreneur_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    },
-    "jobs_id_to_applications_job_id": {
-      "name": "jobs_id_to_applications_job_id",
-      "primaryTableName": "jobs",
-      "primaryColumnName": "id",
-      "foreignTableName": "applications",
-      "foreignColumnName": "job_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    },
-    "candidates_id_to_applications_candidate_id": {
-      "name": "candidates_id_to_applications_candidate_id",
-      "primaryTableName": "candidates",
-      "primaryColumnName": "id",
-      "foreignTableName": "applications",
-      "foreignColumnName": "candidate_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    },
-    "entrepreneurs_id_to_applications_entrepreneur_id": {
-      "name": "entrepreneurs_id_to_applications_entrepreneur_id",
-      "primaryTableName": "entrepreneurs",
-      "primaryColumnName": "id",
-      "foreignTableName": "applications",
-      "foreignColumnName": "entrepreneur_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    },
-    "resumes_id_to_applications_resume_id": {
-      "name": "resumes_id_to_applications_resume_id",
-      "primaryTableName": "resumes",
-      "primaryColumnName": "id",
-      "foreignTableName": "applications",
-      "foreignColumnName": "resume_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "NO_ACTION"
-    },
-    "users_id_to_user_activities_user_id": {
-      "name": "users_id_to_user_activities_user_id",
-      "primaryTableName": "users",
-      "primaryColumnName": "id",
-      "foreignTableName": "user_activities",
-      "foreignColumnName": "user_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    },
-    "jobs_id_to_user_activities_job_id": {
-      "name": "jobs_id_to_user_activities_job_id",
-      "primaryTableName": "jobs",
-      "primaryColumnName": "id",
-      "foreignTableName": "user_activities",
-      "foreignColumnName": "job_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
-    },
-    "users_id_to_notifications_user_id": {
-      "name": "users_id_to_notifications_user_id",
-      "primaryTableName": "users",
-      "primaryColumnName": "id",
-      "foreignTableName": "notifications",
-      "foreignColumnName": "user_id",
-      "cardinality": "ONE_TO_MANY",
-      "updateConstraint": "NO_ACTION",
-      "deleteConstraint": "CASCADE"
+    "notification_type": {
+      "name": "notification_type",
+      "values": [
+        "APPLICATION_STATUS_CHANGED",
+        "JOB_VIEWED",
+        "PROFILE_UPDATED",
+        "RESUME_UPLOADED",
+        "JOB_SAVED",
+        "COMPANY_FOLLOWED",
+        "INTERVIEW_SCHEDULED",
+        "OFFER_RECEIVED",
+        "REMINDER"
+      ],
+      "comment": null
     }
   },
-  "tableGroups": {}
+  "extensions": {
+    "uuid-ossp": {
+      "name": "uuid-ossp"
+    },
+    "pg_graphql": {
+      "name": "pg_graphql"
+    },
+    "pg_stat_statements": {
+      "name": "pg_stat_statements"
+    },
+    "pgcrypto": {
+      "name": "pgcrypto"
+    },
+    "pgjwt": {
+      "name": "pgjwt"
+    },
+    "supabase_vault": {
+      "name": "supabase_vault"
+    }
+  }
 }
